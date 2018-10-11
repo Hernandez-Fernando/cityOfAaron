@@ -6,6 +6,7 @@
  */
 package cityofaaron;
 
+import model.ListItem;
 import model.Player;
 import model.TeamMembers;
 
@@ -32,6 +33,13 @@ public class CityOfAaron {
         System.out.println("Member Name = " + memberTwoName);
         System.out.println("Member Title = " + memberTwoTitle);
         
+        
+        //ListItem Test        
+        String ItemOneName = ListItem.ItemOne.getName();
+        double ItemOneNumber = ListItem.ItemOne.getNumber();
+        
+        System.out.println("Item Name = " + ItemOneName);
+        System.out.println("Item Number = " + ItemOneNumber);
     }
     
 }

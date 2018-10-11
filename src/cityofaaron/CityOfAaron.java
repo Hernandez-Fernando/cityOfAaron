@@ -35,11 +35,11 @@ public class CityOfAaron {
         
         
         //ListItem Test        
-        String ItemOneName = ListItem.ItemOne.getName();
-        double ItemOneNumber = ListItem.ItemOne.getNumber();
+        String itemOneName = ListItem.ItemOne.getName();
+        Integer itemOneNumber = ListItem.ItemOne.getNumber();
         
-        System.out.println("Item Name = " + ItemOneName);
-        System.out.println("Item Number = " + ItemOneNumber);
+        System.out.println("Item Name = " + itemOneName);
+        System.out.println("Item Number = " + itemOneNumber);
     }
     
 }

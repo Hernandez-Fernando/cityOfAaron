@@ -64,40 +64,8 @@ public class CityOfAaron {
         theCropData.setEatenByRats(63);
         theCropData.setWheatForPeople(1243);
 
-        int year = theCropData.getYear();
-        int population = theCropData.getPopulation();
-        int acresOwned = theCropData.getAcresOwned();
-        int yield = theCropData.getCropYield();
-        int inStore = theCropData.getWheatInStore();
-        int died = theCropData.getNumberWhoDied();
-        int newPeople = theCropData.getNewPeople();
-        int harvest = theCropData.getHarvest();
-        int harvestAfter = theCropData.getHarvestAfterOffering();
-        int offering = theCropData.getOffering();
-        int offerBushels = theCropData.getOfferingBushels();
-        int fed = theCropData.getPeopleFed();
-        int planted = theCropData.getAcresPlanted();
-        int starved = theCropData.getNumStarved();
-        int eaten = theCropData.getEatenByRats();
-        int forPeople = theCropData.getWheatForPeople();
-
         System.out.println("\n\n********** CropData Class Testing ********");
-        System.out.println("Year = " + year);
-        System.out.println("Population = " + population);
-        System.out.println("Acres Owned = " + acresOwned);
-        System.out.println("Crop Yield = " + yield);
-        System.out.println("Wheat In Store = " + inStore);
-        System.out.println("Number Who Died = " + died);
-        System.out.println("New People = " + newPeople);
-        System.out.println("Harvest = " + harvest);
-        System.out.println("Harves After Offering = " + harvestAfter);
-        System.out.println("Offering = " + offering);
-        System.out.println("Offering Bushels = " + offerBushels);
-        System.out.println("People Fed = " + fed);
-        System.out.println("Acres Planted = " + planted);
-        System.out.println("Number Starved = " + starved);
-        System.out.println("Eaten By Rats = " + eaten);
-        System.out.println("Wheat For People = " + forPeople);
+        System.out.println(theCropData.toString());
     } 
     
 }

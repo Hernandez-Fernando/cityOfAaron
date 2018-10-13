@@ -8,6 +8,7 @@ package cityofaaron;
 
 import model.CropData;
 import model.ListItem;
+import model.Location;
 import model.Player;
 import model.TeamMembers;
 
@@ -66,6 +67,14 @@ public class CityOfAaron {
 
         System.out.println("\n\n********** CropData Class Testing ********");
         System.out.println(theCropData.toString());
+        
+        // Location Testing
+       Location theLocation = new Location();
+       theLocation.setDescription("This is a game");
+       theLocation.setSymbol("Shield");
+       
+       System.out.println("\n\n********** Location Class Testing ********");
+       System.out.println(theLocation.toString());
     } 
     
 }

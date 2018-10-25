@@ -17,7 +17,7 @@ public class CropControl {
     // constants
     private static final int LAND_BASE = 17; 
     private static final int LAND_RANGE = 10;
-    private static final int POPULATION_ALLOW_PER_ACRE = 10;
+    private static final int POPULATION_ALLOWED_PER_ACRE = 10;
     // random number generator
     private static Random random = new Random();
 
@@ -82,7 +82,7 @@ public class CropControl {
              
         //If acresToBuy > (City population / 10), returns -1
         int population = cropData.getPopulation();
-        if(acresToBuy > (population / POPULATION_ALLOW_PER_ACRE))
+        if(acresToBuy > (population / POPULATION_ALLOWED_PER_ACRE))
             return -1;
        
         //If wheatInStore < (acresToBuy * landPrice), returns -1
@@ -102,6 +102,30 @@ public class CropControl {
         
         //returns acresOwned
         return acresOwned;
+        
+    }
+    
+    /*
+    * This function gets the user input of the percent of offering he wants
+    * to pay and set that value into the cropData class.
+    * It validate the number entered by chencking that is a number between
+    * 0 and 100.
+    */
+    
+    public static int setOffering(int offering, CropData cropData) {
+        // If offering is less than 0 or negative value, return -1
+        if(offering < 0)
+            return -1;
+        
+        // If offering is greater than 100, return -1
+        if(offering > 100)
+            return -1;
+        
+        // Set offering into the cropData Class
+        cropData.setOffering(offering);
+        
+        // Return offering
+        return offering;
         
     }
             

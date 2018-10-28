@@ -18,6 +18,7 @@ public class CropControl {
     private static final int LAND_BASE = 17; 
     private static final int LAND_RANGE = 10;
     private static final int POPULATION_ALLOWED_PER_ACRE = 10;
+    private static final int BUSHELS_PER_ACRE = 2;
     // random number generator
     private static Random random = new Random();
 
@@ -128,6 +129,35 @@ public class CropControl {
         return offering;
         
     }
-            
+    
+    /*
+    * feedPeople() method
+    * Purpose: Feed the People
+    * Parameters: The number of wheat for people, the number of wheat in storage, 
+    * and a reference to a CropData object.
+    * Returns: the amount of wheat left. 
+    * Pre-Conditions: 
+    * 1.Number of wheat for people must be greater than 0. 
+    * 2.Amount of wheat in storage must be equal or greater than wheat for people
+    */
+    
+    public static int feedPeople(int wheatInStore, int wheatForPeople, CropData cropData)
+    {
+        //If wheatForPeople < 0, return -1
+        if (wheatForPeople < 0)
+            return -1;
+        
+	//If wheatInStore < wheatForPeople, returns -1
+        if (wheatInStore < wheatForPeople)
+            return -1;
+        
+	//wheatInStore = wheatInStore - wheatForPeople
+        wheatInStore -= wheatForPeople;
+        cropData.setWheatInStore(wheatInStore);
+        
+	//returns wheatInStore
+        return wheatInStore;
+    }
     
 }
+

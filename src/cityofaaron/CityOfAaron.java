@@ -5,7 +5,6 @@
  * Team members: Sara Compoverde, Annika Rau, Fernando Hernandez 
  */
 package cityofaaron;
-
 import View.*;
 import model.*;
 
@@ -26,7 +25,7 @@ public class CityOfAaron {
         MainMenuView mmv = new MainMenuView();
         
         // runs the main menu
-        mmv.displayMenuView(); 
+        mmv.displayMenu(); 
         
         // game object
         Game myGame = new Game();

@@ -18,7 +18,7 @@ import java.util.Scanner;
 public class MainMenuView {
     Scanner keyboard = new Scanner(System.in);
     private String theMenu; 
-    private int max;
+    private final int MAX = 5; // This will prevent any function to update the value and create a bug.
     
     /**
     * The MainMenuView constructor
@@ -37,7 +37,6 @@ public class MainMenuView {
             " 3 - Get help on playing the game\n" +
             " 4 - Save game\n" +
             " 5 - Quit\n";
-        max = 5; 
     }
     
     public void displayMenu() {
@@ -53,7 +52,7 @@ public class MainMenuView {
             doAction(menuOption);
             
             // Determine and display the next view
-        } while (menuOption != max);
+        } while (menuOption != MAX);
     }
     
     /**
@@ -70,12 +69,12 @@ public class MainMenuView {
             // get user input from the keyboard
             userInput = keyboard.nextInt();
             // if it is not a valid value, output an error message // loop back to the top if input was not valid
-            if (userInput < 1 || userInput > max)
+            if (userInput < 1 || userInput > MAX)
             {
-            System.out.println("Option must be between 1 and " + max);
+            System.out.println("Option must be between 1 and " + MAX);
             }
         // loop back to the top if input was not valid.
-        } while(userInput < 1 || userInput > max);       
+        } while(userInput < 1 || userInput > MAX);       
         // return the value input by the user
         return userInput;
     }
@@ -140,9 +139,10 @@ public class MainMenuView {
         
         // Display a welcome message
         System.out.println("Welcome, " + name + ". Have fun!");
-        // Display the Game menu 
-        // GameMenuView gmv = new GameMenuView();
-        // gmv.displayMenuView();
+        
+// Display the Game menu 
+        GameMenuView gmv = new GameMenuView();
+        gmv.displayMenu();
     } 
     
     /**

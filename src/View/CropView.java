@@ -51,7 +51,7 @@ public class CropView {
         toBuy = keyboard.nextInt();
         
         // Call the buyLand( ) method in the control layer to buy the land
-        CropControl.buyLand(toBuy, price, cropData);
+        CropControl.buyLand(price, toBuy, cropData); // Parameters were in different order than the function in the CropData model
         
         // output how much land we now own
         System.out.format("You now own %d acres of land. ", cropData.getAcresOwned());

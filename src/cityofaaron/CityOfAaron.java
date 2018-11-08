@@ -82,8 +82,8 @@ public class CityOfAaron {
 
         // Location Testing
         Location theLocation = new Location();
-        theLocation.setDescription("This is a game");
-        theLocation.setSymbol("Shield");
+        //theLocation.setDescription("This is a game");
+        //theLocation.setSymbol("Shield");
 
         System.out.println("\n\n********** Location Class Testing ********");
         System.out.println(theLocation.toString());
@@ -94,7 +94,7 @@ public class CityOfAaron {
      * Purpose: get the game
      * @return the game instance
      */
-    public static Game getGame() {
+    public static Game getTheGame() {
         return theGame;
     }
 
@@ -106,5 +106,5 @@ public class CityOfAaron {
     public static void setGame(Game _theGame) {
         theGame = _theGame;
     }
-
+    
 }

@@ -6,7 +6,7 @@
  * Team members: Sara Compoverde, Annika Rau, Fernando Hernandez 
  */
 package View;
-//import cityofaaron.CityOfAaron;
+import cityofaaron.CityOfAaron;
 import control.*;
 import model.*;
 
@@ -22,7 +22,7 @@ public class MainMenuView {
     
     /**
     * The MainMenuView constructor
-    * Purpose: Initialize the menu data
+    * Purpose: displays the menu, gets the user's input, and does the * selected action
     * Parameters: none
     * Returns: none
     */
@@ -40,21 +40,13 @@ public class MainMenuView {
         max = 5; 
     }
     
-    /**
-    * The display Menu method
-    * Purpose: displays the menu, gets the user's input, and does the 
-    * selected action
-    * Parameters: none
-    * Returns: none
-    */
-    // =========================================================
     public void displayMenu() {
         int menuOption;
         do {
             // Display the menu
             System.out.println(theMenu);
             
-            // Prompt the user and get the user’s input 
+            // Prompt the user and get the userâ€™s input // Perform the desired action
             menuOption = getMenuOption();
             
             // Perform the desired action
@@ -71,13 +63,13 @@ public class MainMenuView {
     * Returns: integer - the option selected */
     // ===================================
     public int getMenuOption(){
-        // declare a variable to hold user’s input
+        // declare a variable to hold userâ€™s input // begin loop
         int userInput;
         // begin loop
         do {
             // get user input from the keyboard
             userInput = keyboard.nextInt();
-            // if it is not a valid value, output an error message 
+            // if it is not a valid value, output an error message // loop back to the top if input was not valid
             if (userInput < 1 || userInput > max)
             {
             System.out.println("Option must be between 1 and " + max);
@@ -90,8 +82,7 @@ public class MainMenuView {
     
     /**
     *The doAction method
-    * Purpose: performs the selected action 
-    * Parameters: none
+    * Purpose: performs the selected action * Parameters: none
     * Returns: none
     */
     // ===================================
@@ -138,7 +129,7 @@ public class MainMenuView {
                 + "wheat for your people, they will starve and die. Plan carefully "
                 + "for unforseen thieves.");
         
-        // Prompt for and get the user’s name.
+        // Prompt for and get the users name.
         String name;
         System.out.println("Please type in your first name: ");
         name = keyboard.next();
@@ -150,6 +141,8 @@ public class MainMenuView {
         // Display a welcome message
         System.out.println("Welcome, " + name + ". Have fun!");
         // Display the Game menu 
+        // GameMenuView gmv = new GameMenuView();
+        // gmv.displayMenuView();
     } 
     
     /**
@@ -171,7 +164,10 @@ public class MainMenuView {
     */
     // ===================================
     public void displayHelpMenuView() {
-        System.out.println("Start display help menu view option selected."); 
+        System.out.println("Start display help menu view option selected.");
+        // Display the Help menu 
+           HelpMenuView hmv = new HelpMenuView();
+           hmv.displayMainMenuView();
     }
     
     /**
@@ -185,7 +181,7 @@ public class MainMenuView {
         System.out.println("Start save game view option selected."); 
     }
 
-    
+   
     
     
 }

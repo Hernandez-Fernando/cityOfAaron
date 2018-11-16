@@ -1,7 +1,9 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+ * * The ListMenuView class - part of the view layer
+ * Object of this class manages the List Menu.
+ * CIT-260
+ * Fall 2018
+ * Team members: Sara Compoverde, Annika Rau, Fernando Hernandez 
  */
 package View;
 
@@ -14,13 +16,12 @@ import java.util.Scanner;
  *
  * @author annikarau
  */
-public class ListMenuView {
+public class ListMenuView extends MenuView {
+    //import scanner to accept user's option
     Scanner keyboard = new Scanner(System.in);
-    private String listMenu; 
-    private int max;
 
-/**
-    * The MainMenuView constructor
+    /**
+    * The ListMenuView constructor
     * Purpose: displays the list menu, gets the user's input, and does the * selected action
     * Parameters: none
     * Returns: none
@@ -28,56 +29,17 @@ public class ListMenuView {
     // =========================================================
 
     public ListMenuView() {
-            listMenu = "\n" +
-                "**********************************\n" +
-                "* View/Print a list *\n" + "**********************************\n" +
+            super("\n" +
+                "****************************************\n" +
+                   "* CITY OF AARON: WELCOME LIST MENU  *\n" +
+                "*****************************************\n" +
                 " 1 - List or view the animals in the storehouse\n" +
                 " 2 - List or view the tools in the storehouse\n" +
                 " 3 - List or view the provisions in the storehouse\n" +
                 " 4 - List or view the authors of this game\n" +
-                " 5 - Return to the Main Menu";
-            max = 5; 
+                " 5 - Return to the Main Menu\n"); 
         }
-    
-    public void displayListMenu() {
-        int listMenuOption;
-        do {
-            // Display the menu
-            System.out.println(listMenu);
-            
-            // Prompt the user and get the userâ€™s input // Perform the desired action
-            listMenuOption = getListMenuOption();
-            
-            // Perform the desired action
-            doAction(listMenuOption);
-            
-            // Determine and display the next view
-        } while (listMenuOption != max);
-    }
-    
-    /**
-    * The getListMenuOption method
-    * Purpose: gets the user's input
-    * Parameters: none
-    * Returns: integer - the option selected */
-    // ===================================
-    public int getListMenuOption(){
-        // declare a variable to hold userâ€™s input // begin loop
-        int userInput;
-        // begin loop
-        do {
-            // get user input from the keyboard
-            userInput = keyboard.nextInt();
-            // if it is not a valid value, output an error message // loop back to the top if input was not valid
-            if (userInput < 1 || userInput > max)
-            {
-            System.out.println("Option must be between 1 and " + max);
-            }
-        // loop back to the top if input was not valid.
-        } while(userInput < 1 || userInput > max);       
-        // return the value input by the user
-        return userInput;
-    }
+
         
     /**
     *The doAction method
@@ -85,7 +47,7 @@ public class ListMenuView {
     * Returns: none
     */
     // ===================================
-    public void doAction(int option) {
+    @Override public void doAction(int option) {
         switch(option) {
             // if the option is 1, call listAnimals( )
             case 1:
@@ -121,7 +83,7 @@ public class ListMenuView {
         // Displays the animals.
       
         // Display a message
-        System.out.println("You have ");
+        System.out.println("\nView list of Animals");
     } 
     
     /**
@@ -135,7 +97,7 @@ public class ListMenuView {
         // Displays the tools.
       
         // Display a message
-        System.out.println("You have ");
+        System.out.println("\nView list of tools");
     } 
     
     /**
@@ -149,7 +111,7 @@ public class ListMenuView {
         // Displays the provisions.
       
         // Display a message
-        System.out.println("You have ");
+        System.out.println("\nView list of Provisions");
     } 
     
     /**
@@ -163,7 +125,6 @@ public class ListMenuView {
         // Displays the tools.
       
         // Display a message
-        System.out.println("You have ");
+        System.out.println("\nView list of Team Members");
     } 
-
 }

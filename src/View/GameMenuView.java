@@ -120,8 +120,8 @@ public class GameMenuView {
     public void viewList() {
         System.out.println("Display List option selected.");
         // Display the List menu
-        ListMenuView lmv = new ListMenuView();
-        lmv.displayListMenu();
+        //ListMenuView lmv = new ListMenuView();
+        //lmv.displayListMenu();
     }
     
     public void moveToNewLocation() {

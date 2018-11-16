@@ -21,7 +21,7 @@ public class CropView {
     
     /**
      * The runCropsView method()
-     * Purpose: runs the Hamurabi game
+     * Purpose: runs the City of Aaron game
      * Parameters: none
      * Returns: none
      */

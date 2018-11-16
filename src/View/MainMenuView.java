@@ -15,7 +15,7 @@ import java.util.Scanner;
  *
  * @author annikarau
  */
-public class MainMenuView {
+public class MainMenuView extends MenuView {
     Scanner keyboard = new Scanner(System.in);
     private String theMenu; 
     private final int MAX = 5; // This will prevent any function to update the value and create a bug.
@@ -29,54 +29,16 @@ public class MainMenuView {
     // =========================================================
     
     public MainMenuView() {
-        theMenu = "\n" +
+        super("\n" +
             "**********************************\n" +
-            "* CITY OF AARON: MAIN GAME MENU *\n" + "**********************************\n" +
+            "* CITY OF AARON: MAIN GAME MENU  *\n" + 
+            "**********************************\n" +
             " 1 - Start new game\n" +
             " 2 - Get and start a saved game\n" +
             " 3 - Get help on playing the game\n" +
             " 4 - Save game\n" +
-            " 5 - Quit\n";
-    }
-    
-    public void displayMenu() {
-        int menuOption;
-        do {
-            // Display the menu
-            System.out.println(theMenu);
-            
-            // Prompt the user and get the userâ€™s input // Perform the desired action
-            menuOption = getMenuOption();
-            
-            // Perform the desired action
-            doAction(menuOption);
-            
-            // Determine and display the next view
-        } while (menuOption != MAX);
-    }
-    
-    /**
-    * The getMenuOption method
-    * Purpose: gets the user's input
-    * Parameters: none
-    * Returns: integer - the option selected */
-    // ===================================
-    public int getMenuOption(){
-        // declare a variable to hold userâ€™s input // begin loop
-        int userInput;
-        // begin loop
-        do {
-            // get user input from the keyboard
-            userInput = keyboard.nextInt();
-            // if it is not a valid value, output an error message // loop back to the top if input was not valid
-            if (userInput < 1 || userInput > MAX)
-            {
-            System.out.println("Option must be between 1 and " + MAX);
-            }
-        // loop back to the top if input was not valid.
-        } while(userInput < 1 || userInput > MAX);       
-        // return the value input by the user
-        return userInput;
+            " 5 - Quit\n",
+            5);
     }
     
     /**
@@ -85,7 +47,7 @@ public class MainMenuView {
     * Returns: none
     */
     // ===================================
-    public void doAction(int option) {
+    @Override public void doAction(int option) {
         switch(option) {
             // if the option is 1, call startNewGame( )
             case 1:

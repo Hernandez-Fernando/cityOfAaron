@@ -57,6 +57,14 @@ public class GameMenuView {
         } while (menuOption != MAX);
     }
     
+        
+    /**
+    * The getMenuOption method
+    * Purpose: gets the user's input
+    * Parameters: none
+    * Returns: integer - the option selected */
+    // ===================================
+
     public int getMenuOption(){
         // declare a variable to hold users input // begin loop
         int userInput;

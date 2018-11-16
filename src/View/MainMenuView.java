@@ -126,10 +126,10 @@ public class MainMenuView extends MenuView {
     */
     // ===================================
     public void displayHelpMenuView() {
-        System.out.println("Start display help menu view option selected.");
+        
         // Display the Help menu 
            HelpMenuView hmv = new HelpMenuView();
-           hmv.displayMainMenuView();
+           hmv.displayMenu();
     }
     
     /**

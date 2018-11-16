@@ -37,7 +37,8 @@ public class ListMenuView extends MenuView {
                 " 2 - List or view the tools in the storehouse\n" +
                 " 3 - List or view the provisions in the storehouse\n" +
                 " 4 - List or view the authors of this game\n" +
-                " 5 - Return to the Main Menu\n"); 
+                " 5 - Return to the Main Menu\n",
+            5); 
         }
 
         

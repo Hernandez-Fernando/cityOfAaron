@@ -17,7 +17,7 @@ import java.util.Scanner;
  *
  * @author fernando
  */
-public class GameMenuView {
+public class GameMenuView extends MenuView {
     Scanner keyboard = new Scanner(System.in);
     private String theGameMenu; 
     private final int MAX = 5;
@@ -31,56 +31,16 @@ public class GameMenuView {
     // =========================================================
     
     public GameMenuView() {
-        theGameMenu = "\n" +
+        super("\n" +
             "**********************************\n" +
-            "* CITY OF AARON: GAME MENU *\n" + "**********************************\n" +
+            "*    CITY OF AARON: GAME MENU    *\n" + 
+            "**********************************\n" +
             " 1 - View the map\n" +
             " 2 - View / Print a list\n" +
             " 3 - Move to a new location\n" +
             " 4 - Manage the Crops\n" +
-            " 5 - Return to the Main menu\n";
-    }
-    
-    public void displayMenu() {
-        int menuOption;
-        do {
-            // Display the menu
-            System.out.println(theGameMenu);
-            
-            // Prompt the user and get the userâ€™s input // Perform the desired action
-            menuOption = getMenuOption();
-            
-            // Perform the desired action
-            doAction(menuOption);
-            
-            // Determine and display the next view
-        } while (menuOption != MAX);
-    }
-    
-        
-    /**
-    * The getMenuOption method
-    * Purpose: gets the user's input
-    * Parameters: none
-    * Returns: integer - the option selected */
-    // ===================================
-
-    public int getMenuOption(){
-        // declare a variable to hold users input // begin loop
-        int userInput;
-        // begin loop
-        do {
-            // get user input from the keyboard
-            userInput = keyboard.nextInt();
-            // if it is not a valid value, output an error message // loop back to the top if input was not valid
-            if (userInput < 1 || userInput > MAX)
-            {
-            System.out.println("Option must be between 1 and " + MAX);
-            }
-        // loop back to the top if input was not valid.
-        } while(userInput < 1 || userInput > MAX);       
-        // return the value input by the user
-        return userInput;
+            " 5 - Return to the Main menu\n",
+            5);
     }
     
     /**
@@ -89,7 +49,7 @@ public class GameMenuView {
     * Returns: none
     */
     // ===================================
-    public void doAction(int option) {
+    @Override public void doAction(int option) {
         switch(option) {
             // if the option is 1, call viewMap( )
             case 1:
@@ -131,6 +91,6 @@ public class GameMenuView {
     public void manageCrops() {
         System.out.println("Manage Crops option selected.");
         CropView cmv = new CropView();
-        cmv.buyLandView();
+        cmv.displayMenu();
     }
 }

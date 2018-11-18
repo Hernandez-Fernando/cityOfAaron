@@ -155,6 +155,9 @@ public class CropControl {
 	//wheatInStore = wheatInStore - wheatForPeople
         wheatInStore -= wheatForPeople;
         cropData.setWheatInStore(wheatInStore);
+        //cropWheatForPeple += wheatForPeople;
+        wheatForPeople += cropData.getWheatForPeople();
+        cropData.setWheatForPeople(wheatForPeople);
         
 	//returns wheatInStore
         return wheatInStore;

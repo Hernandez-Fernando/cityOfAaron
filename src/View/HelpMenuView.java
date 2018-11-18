@@ -26,7 +26,7 @@ public class HelpMenuView extends MenuView {
     public HelpMenuView() {
         super("\n" +
             "**********************************\n" +
-            "* HELP MENU *\n" + 
+            "*            HELP MENU           *\n" + 
             "**********************************\n" +
             " 1 - What are the goals of the game?\n" +
             " 2 - Where is the city of Aaron?\n" +

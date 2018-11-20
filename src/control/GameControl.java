@@ -124,16 +124,19 @@ public class GameControl {
         theMap.setLocation(3, 0, loc);
         
         // Define the string for Storehouse location
-        String storehouse = "Add text";
+        String storehouse = "This is the City's Granary and Storehouse\n "
+                          + "where your wheat will be stored.";
         loc = new Location();
-        loc.setDescription(storehouse + "\n Add trick");
+        loc.setDescription(storehouse + "\nEach person needs 20 bushels of wheat each year to live\n ");
         loc.setSymbol("===");
         theMap.setLocation(4, 0, loc);
        
         // Define the string for Rulers Court location
-        String court = "Add text";
+        String court = "This is the Ruler's Court, your court\n "
+                     + "where you will rule over each one of their inhabitants.\n "
+                     + "Always with wise, justice, and mercy";
         loc = new Location();
-        loc.setDescription(court + "\n Add trick");
+        loc.setDescription(court);
         loc.setSymbol("$$$");
         theMap.setLocation(1, 1, loc);
         
@@ -180,7 +183,8 @@ public class GameControl {
         
         
         // use setters in the Location class to set the description and symbol
-        loc.setDescription(river); loc.setSymbol("~~~");
+        loc.setDescription(river); 
+        loc.setSymbol("~~~");
         // set this location object in each cell of the array in column 4
         for(int i = 0; i < MAX_ROW; i++)
         {

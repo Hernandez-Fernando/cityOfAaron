@@ -107,7 +107,8 @@ public class GameControl {
         // Fill map from left-top to right-bottom
         
         // Define the string for mountains location
-        String mountains = "Add text";
+        String mountains = "You are in the mountains that mark the northwest boundary \n" + 
+                "of the land. Enjoy your hike.";
         loc = new Location();
         loc.setDescription(mountains + "\n Add trick");
         loc.setSymbol("^^^");
@@ -116,9 +117,10 @@ public class GameControl {
         theMap.setLocation(1, 0, loc);
         
         // Define the string for desert location
-        String desert = "Add text";
+        String desert = "You are in the desert on the western-most boundary of \n" +
+                "the land. Nothing grows here and you're getting very thirsty.";
         loc = new Location();
-        loc.setDescription(desert + "\n Add trick");
+        loc.setDescription(desert + "\n Nothing to do here.");
         loc.setSymbol("...");
         theMap.setLocation(2, 0, loc);
         theMap.setLocation(3, 0, loc);

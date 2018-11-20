@@ -10,12 +10,14 @@ package control;
 import java.util.ArrayList;
 import model.*;
 import cityofaaron.CityOfAaron;
+import java.util.Scanner;
 
 /**
  *
  * @author annikarau
  */
 public class GameControl {
+    Scanner keyboard = new Scanner(System.in);
     private static final int MAX_ROW = 5;
     private static final int MAX_COL = 5;
     private static Game theGame;
@@ -24,7 +26,7 @@ public class GameControl {
     public static void createNewGame(String _name) { 
         
         // create the game object Game game = new Game();
-        Game theGame = new Game();
+        theGame = new Game();
         // Save a reference to the Game object in the static variable declared
         //in the CityofAaron class.
         CityOfAaron.setGame(theGame);

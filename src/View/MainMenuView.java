@@ -81,13 +81,13 @@ public class MainMenuView extends MenuView {
     // ===================================
     public void startNewGame() {
         // Display the Banner Page.
-        System.out.println("Welcome to the City of Aaron. You have been found worthy"
-                + " of assuming your role as Chief Judge. As the head ruler, you "
-                + "will be responsible for buying and selling land, determining how "
-                + "much wheat to plant each year, and how much wheat to store to feed "
-                + "the people. You will also be responsible for paying the annual "
-                + "tithe on the harvested wheat. If you fail in your duties to provide "
-                + "wheat for your people, they will starve and die. Plan carefully "
+        System.out.println("Welcome to the City of Aaron. You have been found worthy\n"
+                + " of assuming your role as Chief Judge. As the head ruler, you\n "
+                + "will be responsible for buying and selling land, determining how\n "
+                + "much wheat to plant each year, and how much wheat to store to feed\n "
+                + "the people. You will also be responsible for paying the annual\n "
+                + "tithe on the harvested wheat. If you fail in your duties to provide\n "
+                + "wheat for your people, they will starve and die. Plan carefully\n "
                 + "for unforseen thieves.");
         
         // Prompt for and get the users name.

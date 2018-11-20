@@ -77,7 +77,7 @@ public class GameControl {
 //            + "\n--------------------------------------"
 //            + "\n        ||City of Aaron Map||         "
 //            + "\n--------------------------------------"
-//            + "\n        0     1     2     3     0     "
+//            + "\n        0     1     2     3     4     "
 //            + "\n      _____ _____ _____ _____ _____   "
 //            + "\n   0 | ^^^ | ^^^ | ___ | !!! | ~~~ |  "
 //            + "\n   1 | ^^^ | $$$ | ___ | !!! | ~~~ |  "
@@ -183,7 +183,7 @@ public class GameControl {
         "of life for our city. The river marks the eastern\n " + 
         "boundary of the city - it is wilderness to the East.\n";
         
-        
+        loc = new Location();
         // use setters in the Location class to set the description and symbol
         loc.setDescription(river); 
         loc.setSymbol("~~~");
@@ -199,28 +199,34 @@ public class GameControl {
     }
     
     public void displayMap() {
-        //Game theGame = CityOfAaron.getTheGame();
         Map map = theGame.getMap();
-        System.out.println("\n** . The City of Aaron Map  **\n");
+        System.out.println(
+                "\n** . The City of Aaron Map  **\n" +  
+                "\n--------------------------------------"
+              + "\n        ||City of Aaron Map||         "
+              + "\n--------------------------------------"
+              + "\n        0     1     2     3     4     "
+              + "\n      _____ _____ _____ _____ _____   ");
                
-        //print each line (row)
+        //print each row
         for(int i = 0; i < 5; i++){
-            //print column of each row
+            String row = "\n   "+i+" |"; 
             for(int j = 0; j< 5; j++){
-            //column += "|" + map.getLocation(i, j).getSymbol();
-            System.out.print(map.getLocation(i, j).getSymbol()+ " ");
+                row += " " + map.getLocation(i, j).getSymbol()+ " |";
+                System.out.print(row);
+                row = "";
             }
-           
-                        
         }
             System.out.println("\n"
-                + "  Map Key:\n"
-                + "  ^^^ - Village\n"
-                + "  !!! - Farmland\n"
-                + "  ~~~ - River\n"
-                + "  === - Granary and Storehouse\n"
-                + "  $$$ - Rulers Court\n"
-                + "  ### - Undeveloped Land");
+                + "\n   Map Key:"
+                + "\n   ^^^ - Mountains                "
+                + "\n   000 - Village                  "
+                + "\n   === - Storehouse               "
+                + "\n   !!! - wheat                    "
+                + "\n   ~~~ - River                    "
+                + "\n   ... - Desert                   "
+                + "\n   ___ - Undeveloped Land         "
+                + "\n   $$$ - Ruler's Court");
                     
         }
                 

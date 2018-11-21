@@ -143,20 +143,23 @@ public class GameControl {
         theMap.setLocation(1, 1, loc);
         
         // Define the string for Village location
-        String village = "Add text";
+        String village = "You are in the main village where all people are friendly\n" +
+                "and live in peace. People love their lives and rulers and expect\n "
+                +"to live a happy and righteous life.";
         loc = new Location();
-        loc.setDescription(village + "\n Add trick");
+        loc.setDescription(village + "\n People will follow according to your choices, always remember your people.");
         loc.setSymbol("000");
         theMap.setLocation(2, 1, loc);
         theMap.setLocation(3, 1, loc);
         theMap.setLocation(4, 1, loc);
  
         // define the string for a undeveloped land location
-        String undevelopedLand = "Add text";
+        String undevelopedLand = "This is an open land where there is nothing built or planted,\n"
+                +"it's a land opened to different opoortunities. How are you going to take advantage of it?";
         
         // set a farmland location with a hint
         loc = new Location();
-        loc.setDescription(undevelopedLand + "\nAdd text");
+        loc.setDescription(undevelopedLand);
         loc.setSymbol("___");
         for(int i = 0; i < MAX_ROW; i++)
         {

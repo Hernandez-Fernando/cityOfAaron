@@ -7,6 +7,7 @@
 package model;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 
 /**
  *
@@ -17,6 +18,7 @@ public class Game implements Serializable {
    private Player thePlayer;
    private CropData cropData;
    private Map theMap;
+   private ArrayList<ListItem> tools;
 
     public Player getThePlayer() {
         return thePlayer;
@@ -44,6 +46,14 @@ public class Game implements Serializable {
     
     public void setMap(Map map) {
         this.theMap = map;
+    }
+
+    public ArrayList<ListItem> getTools() {
+        return tools;
+    }
+
+    public void setTools(ArrayList<ListItem> tools) {
+        this.tools = tools;
     }
 
     

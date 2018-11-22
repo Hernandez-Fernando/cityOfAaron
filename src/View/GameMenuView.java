@@ -75,15 +75,15 @@ public class GameMenuView extends MenuView {
     
     public void viewMap() {
         //System.out.println("Display Map option selected.");
-        GameControl theGameControl = new GameControl();
-        theGameControl.displayMap();
+        GameControl gameControl = new GameControl();
+        gameControl.displayMap();
     }
     
     public void viewList() {
         System.out.println("Display List option selected.");
         // Display the List menu
-        //ListMenuView lmv = new ListMenuView();
-        //lmv.displayListMenu();
+        ListMenuView lmv = new ListMenuView();
+        lmv.displayMenu();
     }
     
     public void moveToNewLocation() {

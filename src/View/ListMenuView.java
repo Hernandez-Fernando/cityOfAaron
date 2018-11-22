@@ -98,7 +98,8 @@ public class ListMenuView extends MenuView {
         // Displays the tools.
       
         // Display a message
-        System.out.println("\nView list of tools");
+        GameControl gameControl = new GameControl();
+        gameControl.displayToolList();
     } 
     
     /**

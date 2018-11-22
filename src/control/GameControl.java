@@ -203,10 +203,9 @@ public class GameControl {
     
     public void displayMap() {
         Map map = theGame.getMap();
-        System.out.println(
-                "\n** . The City of Aaron Map  **\n" +  
+        System.out.println(  
                 "\n--------------------------------------"
-              + "\n        ||City of Aaron Map||         "
+              + "\n          City of Aaron Map           "
               + "\n--------------------------------------"
               + "\n        0     1     2     3     4     "
               + "\n      _____ _____ _____ _____ _____   ");
@@ -232,5 +231,34 @@ public class GameControl {
                 + "\n   $$$ - Ruler's Court");
                     
         }
+    
+     public static void createToolList() {
+        ArrayList<ListItem> tools = new ArrayList<>();
+ 
+        tools.add(new ListItem("Hammer", 20)); 
+        tools.add(new ListItem("Shovel", 15)); 
+        tools.add(new ListItem("Pitch Fork", 20)); 
+        tools.add(new ListItem("Axe", 10));
+        tools.add(new ListItem("Hoe", 10));
+        
+        theGame.setTools(tools);
+     }
+     
+     public void displayToolList() {
+         ArrayList<ListItem> toolList = theGame.getTools();
+         
+         System.out.println(
+                      "\n--------------------------------------"
+                    + "\n            List of Tools             "
+                    + "\n--------------------------------------"
+                    + "\n     Tool Name           Quantity"
+                    + "\n--------------------------------------");
+         for (int i = 0; i < toolList.size(); i++) {
+             //System.out.print(toolList.get(i).getName() + "   " + toolList.get(i).getNumber());
+             System.out.print(toolList.get(i).toString());
+         }
+         
+         System.out.println("\n--------------------------------------");
+     }
                 
     }

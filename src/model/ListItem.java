@@ -9,13 +9,12 @@ package model;
  *
  * @author annikarau
  */
-public enum ListItem {
-    ItemOne("First Item", 12345),
-    ItemTwo("Second Item", 67890);
+public class ListItem {
+   
     private String name;
     private int number;
 
-    ListItem(String name, int number) {
+    public ListItem(String name, int number) {
         this.name = name;
         this.number = number;
     }

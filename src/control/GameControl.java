@@ -42,6 +42,7 @@ public class GameControl {
         
         createMap();
         createCropDataObject();
+        createToolList();
     
     }
     
@@ -248,14 +249,14 @@ public class GameControl {
          ArrayList<ListItem> toolList = theGame.getTools();
          
          System.out.println(
-                      "\n--------------------------------------"
-                    + "\n            List of Tools             "
-                    + "\n--------------------------------------"
-                    + "\n     Tool Name           Quantity"
-                    + "\n--------------------------------------");
+                      "\n-----------------------------------"
+                    + "\n         List of Tools             "
+                    + "\n-----------------------------------"
+                    + "\n    Quantity        Tool Name"
+                    + "\n-----------------------------------");
          for (int i = 0; i < toolList.size(); i++) {
-             //System.out.print(toolList.get(i).getName() + "   " + toolList.get(i).getNumber());
-             System.out.print(toolList.get(i).toString());
+             System.out.println("       " + toolList.get(i).getNumber() + "           " + toolList.get(i).getName());
+             
          }
          
          System.out.println("\n--------------------------------------");

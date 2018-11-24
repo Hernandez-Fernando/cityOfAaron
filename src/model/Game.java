@@ -19,6 +19,7 @@ public class Game implements Serializable {
    private CropData cropData;
    private Map theMap;
    private ArrayList<ListItem> tools;
+   private ArrayList<ListItem> animals;
 
     public Player getThePlayer() {
         return thePlayer;
@@ -54,6 +55,14 @@ public class Game implements Serializable {
 
     public void setTools(ArrayList<ListItem> tools) {
         this.tools = tools;
+    }
+
+    public void setAnimals(ArrayList<ListItem> animals) {
+        this.animals = animals;
+    }
+
+    public ArrayList<ListItem> getAnimals() {
+        return animals;
     }
 
     

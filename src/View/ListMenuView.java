@@ -81,10 +81,13 @@ public class ListMenuView extends MenuView {
     */
     // ===================================
     public void listAnimals() {
-        // Displays the animals.
-      
         // Display a message
         System.out.println("\nView list of Animals");
+        
+        // Displays the animals.
+        GameControl al = new GameControl();
+        al.displayAnimalList();
+     
     } 
     
     /**

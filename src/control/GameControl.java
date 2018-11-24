@@ -43,6 +43,7 @@ public class GameControl {
         createMap();
         createCropDataObject();
         createToolList();
+        createAnimalList();
     
     }
     
@@ -261,5 +262,37 @@ public class GameControl {
          
          System.out.println("\n--------------------------------------");
      }
+     //create arrayList to display animals in the storehouse
+     public static void createAnimalList(){
+         
+         ArrayList<ListItem> animals = new ArrayList<>();
+         
+         animals.add(new ListItem("Cows", 12));
+         animals.add(new ListItem("Horses", 24));
+         animals.add(new ListItem("Pigs", 17));
+         animals.add(new ListItem("Goats", 14));
+         animals.add(new ListItem("Sheeps", 16));
+         animals.add(new ListItem("Duck", 20));
+         animals.add(new ListItem("Rabbit", 10));
+         
+         theGame.setAnimals(animals);
+     }
+     //display animal list
+     public void displayAnimalList() {
+         ArrayList<ListItem> animalList = theGame.getAnimals();  
+         
+         System.out.println("\n-----------------------------------"
+                          + "\n         List of Animals           "
+                          + "\n-----------------------------------"
+                          + "\n    Quantity        Animal Name"
+                          + "\n-----------------------------------");
+         for (int i = 0; i < animalList.size(); i++) {
+             System.out.println("       " + animalList.get(i).getNumber() + 
+                                "              " + animalList.get(i).getName()); 
+         }    
+     }
+     
+     
+}
                 
-    }
+  

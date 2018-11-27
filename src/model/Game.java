@@ -20,6 +20,7 @@ public class Game implements Serializable {
    private Map theMap;
    private ArrayList<ListItem> tools;
    private ArrayList<ListItem> animals;
+   private ArrayList<ListItem> provisions;
 
     public Player getThePlayer() {
         return thePlayer;
@@ -64,6 +65,15 @@ public class Game implements Serializable {
     public ArrayList<ListItem> getAnimals() {
         return animals;
     }
+    
+    public void setProvisions(ArrayList<ListItem> provisions) {
+        this.provisions = provisions;
+    }
+    
+    public ArrayList<ListItem> getProvisions() {
+        return provisions;
+    }
+
 
     
    

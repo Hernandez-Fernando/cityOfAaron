@@ -10,6 +10,7 @@ package View;
 import cityofaaron.CityOfAaron;
 import control.*;
 import model.*;
+import java.util.ArrayList;
 
 import java.util.Scanner;
 /**
@@ -17,6 +18,7 @@ import java.util.Scanner;
  * @author annikarau
  */
 public class ListMenuView extends MenuView {
+    private Game theGame = CityOfAaron.getTheGame();
     //import scanner to accept user's option
     Scanner keyboard = new Scanner(System.in);
 
@@ -92,7 +94,7 @@ public class ListMenuView extends MenuView {
     
     /**
     * The listTools method
-    * Purpose: Displays list of animals
+    * Purpose: Displays list of tools
     * Parameters: none
     * Returns: none
     */
@@ -107,21 +109,31 @@ public class ListMenuView extends MenuView {
     
     /**
     * The listProvisions method
-    * Purpose: Displays list of animals
+    * Purpose: Displays list of provisions
     * Parameters: none
     * Returns: none
     */
     // ===================================
     public void listProvisions() {
-        // Displays the provisions.
-      
-        // Display a message
-        System.out.println("\nView list of Provisions");
-    } 
+        // Displays the provisions (Gets ArrayList from theGame object)
+        ArrayList<ListItem> provisionsList = theGame.getProvisions();  
+
+        System.out.println("\n-----------------------------------"
+            + "\n         List of Provisions        "
+            + "\n-----------------------------------");
+        System.out.printf("%s %17s", "Provision", "Quantity");
+        System.out.println("\n-----------------------------------");
+        System.out.println();
+            for (int i = 0; i < provisionsList.size(); i++) {
+                System.out.format("%-20s %-10d\n", provisionsList.get(i).getName(), provisionsList.get(i).getNumber());
+                System.out.println();
+            }
+    }
+    
     
     /**
     * The listTeam method
-    * Purpose: Displays list of animals
+    * Purpose: Displays list of Team Members
     * Parameters: none
     * Returns: none
     */

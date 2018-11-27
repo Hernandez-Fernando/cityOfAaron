@@ -7,9 +7,10 @@
 */
 // ==============================================================
 package control;
-import java.util.ArrayList;
+
 import model.*;
 import cityofaaron.CityOfAaron;
+import java.util.ArrayList;
 import java.util.Scanner;
 
 /**
@@ -18,6 +19,7 @@ import java.util.Scanner;
  */
 public class GameControl {
     Scanner keyboard = new Scanner(System.in);
+    //size of the Locations array
     private static final int MAX_ROW = 5;
     private static final int MAX_COL = 5;
     private static Game theGame;
@@ -27,6 +29,7 @@ public class GameControl {
         
         // create the game object Game game = new Game();
         theGame = new Game();
+        
         // Save a reference to the Game object in the static variable declared
         //in the CityofAaron class.
         CityOfAaron.setGame(theGame);
@@ -40,10 +43,12 @@ public class GameControl {
         // save reference to the player object in the Game object
         theGame.setPlayer(player);
         
+        //call to methods
         createMap();
         createCropDataObject();
         createToolList();
         createAnimalList();
+        createProvisionsList();
     
     }
     
@@ -284,13 +289,28 @@ public class GameControl {
          System.out.println("\n-----------------------------------"
                           + "\n         List of Animals           "
                           + "\n-----------------------------------"
-                          + "\n    Quantity        Animal Name"
+                          + "\n    Quantity        Animal Name    "
                           + "\n-----------------------------------");
          for (int i = 0; i < animalList.size(); i++) {
              System.out.println("       " + animalList.get(i).getNumber() + 
                                 "              " + animalList.get(i).getName()); 
          }    
      }
+     
+    //create arrayList to display list of provisions in the storehouse.
+    public static void createProvisionsList() {
+        ArrayList<ListItem>provisions = new ArrayList<>();
+
+        provisions.add(new ListItem("Feathers", 50));
+        provisions.add(new ListItem("Bows", 20));
+        provisions.add(new ListItem("Arrows", 80));
+        provisions.add(new ListItem("Cooking pots", 10));
+        provisions.add(new ListItem("Fishing nets", 30));
+        provisions.add(new ListItem("Spears", 40));
+        provisions.add(new ListItem("Hides", 15));
+
+        theGame.setProvisions(provisions);
+    }
      
      
 }

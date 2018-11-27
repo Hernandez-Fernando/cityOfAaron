@@ -100,11 +100,21 @@ public class ListMenuView extends MenuView {
     */
     // ===================================
     public void listTools() {
-        // Displays the tools.
-      
-        // Display a message
-        GameControl gameControl = new GameControl();
-        gameControl.displayToolList();
+        // Displays tool list
+        
+        ArrayList<ListItem> toolList = theGame.getTools();
+         
+         System.out.println("\n-----------------------------------"
+            + "\n         List of Tools        "
+            + "\n-----------------------------------");
+        System.out.printf("%s %20s", "Tools", "Quantity");
+        System.out.println("\n-----------------------------------");
+         for (int i = 0; i < toolList.size(); i++) {
+             System.out.format("%-20s %-10d\n",toolList.get(i).getName(), toolList.get(i).getNumber());
+             
+         }
+         
+         System.out.println("\n-----------------------------------");
     } 
     
     /**

@@ -250,23 +250,7 @@ public class GameControl {
         
         theGame.setTools(tools);
      }
-     
-     public void displayToolList() {
-         ArrayList<ListItem> toolList = theGame.getTools();
-         
-         System.out.println(
-                      "\n-----------------------------------"
-                    + "\n         List of Tools             "
-                    + "\n-----------------------------------"
-                    + "\n    Quantity        Tool Name"
-                    + "\n-----------------------------------");
-         for (int i = 0; i < toolList.size(); i++) {
-             System.out.println("       " + toolList.get(i).getNumber() + "           " + toolList.get(i).getName());
-             
-         }
-         
-         System.out.println("\n--------------------------------------");
-     }
+    
      //create arrayList to display animals in the storehouse
      public static void createAnimalList(){
          

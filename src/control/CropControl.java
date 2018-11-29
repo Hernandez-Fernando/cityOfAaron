@@ -45,15 +45,15 @@ public class CropControl {
     * and <= acresOwned
     */
     
-    public static int sellLand(int landPrice, int acresToSell, CropData cropData) {
+    public static int sellLand(int landPrice, int acresToSell, CropData cropData) throws CropException {
         //if acresToSell < 0, return -1
         if(acresToSell < 0)
-            return -1;
+            throw new CropException("A negative value was input");
 
         //if acresToSell > acresOwned, return -1
         int acresOwned = cropData.getAcresOwned();
         if(acresToSell > acresOwned)
-            return -1;
+            throw new CropException("You cannot sell more acres than you own.");
 
         //acresOwned = acresOwned - acresToSell
         acresOwned -= acresToSell;

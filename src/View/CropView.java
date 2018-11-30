@@ -228,6 +228,7 @@ public class CropView extends MenuView {
         } while(paramsNotOkay);
         
         System.out.format("You now have %d acres planted. ", cropData.getAcresPlanted());
+        System.out.format("You have %d Wheat in Store left. ", cropData.getWheatInStore());
     }
     
     /**

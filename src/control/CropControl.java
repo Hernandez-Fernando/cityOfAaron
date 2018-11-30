@@ -176,39 +176,38 @@ public class CropControl {
     * land owned minus the land already planted, and the city must have enough 
     * wheat in store. 
     * Annika Rau
+    * Modified for Fernando Hernandez
     */ 
 
-    public static int plantCrops(int acresToPlant, int bushelsPerAcre, CropData cropData) {
+    public static void plantCrops(int acresToPlant, CropData cropData) throws CropException{
         //If acresToPlant < 1, returns -1
-        if (acresToPlant < 1)
-            return -1;
-        
-        // If acresToPlant > wheatInStore – (bushelsPerAcre * acresToPlant), returns -1
-        int wheatInStore = cropData.getWheatInStore();
-        if (acresToPlant > wheatInStore - (bushelsPerAcre * acresToPlant))
-            return -1;
-        
+        if (acresToPlant < 0)
+            throw new CropException("A negative value was input. Try again using a positive value:");
+       
         //If acresToPlant > acresOwned, returns -1
         int acresOwned = cropData.getAcresOwned();
         if (acresToPlant > acresOwned)
-            return -1;
+            throw new CropException("You don't owned sufficient land to plant, try a lower number.");
+        
+        // If acresToPlant > wheatInStore – (bushelsPerAcre * acresToPlant), returns -1
+        int wheatInStore = cropData.getWheatInStore();
+//        if (acresToPlant > wheatInStore - (bushelsPerAcre * acresToPlant))
+//            throw new CropException("A negative value was input.");
         
         // If wheatInStore < bushelsNeeded, returns -1
-        int bushelsNeeded = acresToPlant * bushelsPerAcre;
+        int bushelsNeeded = acresToPlant * BUSHELS_PER_ACRE;
         if (wheatInStore < bushelsNeeded)
-            return -1;
+            throw new CropException("You don't have enough Wheat in Store to plant this amound of land, try planting less land:");
         
         //Set acresPlanted into the cropData Class
         int acresPlanted = cropData.getAcresPlanted();
-        acresPlanted += acresPlanted;
+        acresPlanted += acresToPlant;
         cropData.setAcresPlanted(acresPlanted);
         
         //wheatInStore = wheatInStore - (acresToPlant * bushelsNeeded)
         wheatInStore -= bushelsNeeded;
         cropData.setWheatInStore(wheatInStore);
-        
-        //returns acresOwned
-        return acresPlanted;    
+            
     }
 }
 

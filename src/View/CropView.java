@@ -201,15 +201,26 @@ public class CropView extends MenuView {
      */
     public static void plantCropsView(){
         //ask user how many acres of land they want to plant
-        System.out.print("How many acres of land do you want to plant? ");
-    
-        //User enters a value
-        //check to make sure value is positive. if not, show a message and ask user to enter value again.
-        //make sure city has this much land. if not, show a message and ask the user to enter value again.
-        //make sure the city has enough wheat in storage to plant this many acres. If not, show a message and ask user to enter value again.
-        //calculate the number of bushels required to plant the crops
-        //subtract this amount from the wheat in storage. Display the amount of wheat you have left.
-        //Update the game state to save how acres have been planted.
+        int acresToPlant;
+        boolean paramsNotOkay;
+        
+        do {
+            paramsNotOkay = false;
+            System.out.println("How many acres of land do you want to plant? ");
+            acresToPlant = keyboard.nextInt();
+            
+            try {
+                // Call the buyLand( ) method in the control layer to buy the land
+                CropControl.plantCrops(acresToPlant, cropData); // Parameters were in different order than the function in the CropData model
+            }
+            catch(CropException e) {
+                System.out.println("I am sorry master, I cannot do this."); 
+                System.out.println(e.getMessage());
+                paramsNotOkay = true;
+            }
+        } while(paramsNotOkay);
+        
+        System.out.format("You now have %d acres planted. ", cropData.getAcresPlanted());
     }
     
     /**

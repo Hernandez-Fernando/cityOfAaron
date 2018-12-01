@@ -9,6 +9,8 @@ import control.*;
 import java.util.Scanner;
 import cityofaaron.CityOfAaron;
 import exceptions.CropException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 /**
  *
  * @author annika
@@ -169,38 +171,33 @@ public class CropView extends MenuView {
      */
     
     public static void feedPeopleView(){
-        //ask user how many bushels of grain to give the people
-        System.out.print("How many bushels of grain do you want to give to the people? ");
+        int wheatInStore = cropData.getWheatInStore();        
         //User enters a value
         int bushels;
-        bushels = keyboard.nextInt();
-        
-        //check to make sure value is positive. if not, show a message and ask user to enter value again.
-        if (bushels < 0) {
-            do {
-                System.out.print("Please insert a positive value for People to Feed:");
-                bushels = keyboard.nextInt();
-            } while (bushels < 0);
-        }
-        
-        //make sure city has this much wheat in storage. if not, show a message and ask the user to enter value again.
-        int wheatInStore = cropData.getWheatInStore();
-        if (bushels > wheatInStore) {
-            do {
-                System.out.print("You dont have much weat in storage, please try a smaller number:");
-                bushels = keyboard.nextInt();
-            } while (bushels > wheatInStore);
-        }
+        boolean paramsNotOkay;
+        do 
+        {
+            paramsNotOkay = false;
+            //ask user how many bushels of grain to give the people
+            System.out.println("\nHow many bushels of grain do you want to give to the people? ");
+            bushels = keyboard.nextInt();
     
-        //subract this amount from the wheat in storage. Display the amount of wheat you have left.
-        CropControl.feedPeople(wheatInStore, bushels, cropData);
-        System.out.format("You now have %d Weat in Store. ", cropData.getWheatInStore());
+            try {
+                //subract this amount from the wheat in storage. Display the amount of wheat you have left.
+                CropControl.feedPeople(wheatInStore, bushels, cropData);
+            } 
+            catch (CropException e) {
+                System.out.println("I am sorry master, I cannot do this");
+                System.out.println(e.getMessage());
+                paramsNotOkay = true;
+            }
+        }while(paramsNotOkay);
         
+        System.out.format("You now have %d Wheat in Store. ", cropData.getWheatInStore());
         //Update the game state to save how many bushels of wheat you have set aside to feed the people.
-        System.out.format("You now have %d Weat for People. ", cropData.getWheatForPeople());
+        System.out.format("You now have %d Wheat for People. ", cropData.getWheatForPeople());
+    }  
         
-    }
-    
     /**
      * The plantCropsView method
      * Purpose: interface with the user input for planting crops * Parameters: none

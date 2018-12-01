@@ -142,15 +142,14 @@ public class CropControl {
     * 2.Amount of wheat in storage must be equal or greater than wheat for people
     */
     
-    public static int feedPeople(int wheatInStore, int wheatForPeople, CropData cropData)
-    {
+    public static void feedPeople(int wheatInStore, int wheatForPeople, CropData cropData)throws CropException{
         //If wheatForPeople < 0, return -1
         if (wheatForPeople < 0)
-            return -1;
+            throw new CropException("A negative value was input");
         
 	//If wheatInStore < wheatForPeople, returns -1
         if (wheatInStore < wheatForPeople)
-            return -1;
+            throw new CropException("There is insufficient wheat to feed the people");
         
 	//wheatInStore = wheatInStore - wheatForPeople
         wheatInStore -= wheatForPeople;
@@ -160,7 +159,7 @@ public class CropControl {
         cropData.setWheatForPeople(wheatForPeople);
         
 	//returns wheatInStore
-        return wheatInStore;
+        
     }
     
     /**

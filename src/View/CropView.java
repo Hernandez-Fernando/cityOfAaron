@@ -235,12 +235,29 @@ public class CropView extends MenuView {
      */
     public static void payOfferingsView(){
         //ask user what percentage of their harvest they want to pay in tithes and offerings
-        System.out.print("What percentage of your harvest do you want to pay in tithes and offerings? ");
+        int offering;
+        boolean paramsNotOkay;
+        
+        do 
+        {
+            paramsNotOkay = false;
+            System.out.print("What percentage of your harvest do you want to pay in tithes and offerings? ")
+            offering = keyboard.nextInt();
     
-        //Get the user's input
-        //Check to make sure the value entered is positive. if it is not, show a message and ask user to enter a new value.
-        //Check to make sure that the value entered by the user is not greater than 100. If it is, display a message and ask the user to eneter a new value.
-        //Save the value entered by the user
+            try {
+                //subract this amount from the wheat in storage. Display the amount of wheat you have left.
+                CropControl.feedPeople(offering, cropData);
+            } 
+            catch (CropException e) {
+                System.out.println("I am sorry master, I cannot do this");
+                System.out.println(e.getMessage());
+                paramsNotOkay = true;
+            }
+        }while(paramsNotOkay);
+        
+        System.out.format("You offering percent is now %d.", cropData.getOffering());
+        ;
+    
     }
 
 }

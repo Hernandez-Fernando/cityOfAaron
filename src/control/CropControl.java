@@ -45,7 +45,7 @@ public class CropControl {
     * and <= acresOwned
     */
     
-    public static int sellLand(int landPrice, int acresToSell, CropData cropData) throws CropException {
+    public static void sellLand(int landPrice, int acresToSell, CropData cropData) throws CropException {
         //if acresToSell < 0, return -1
         if(acresToSell < 0)
             throw new CropException("A negative value was input");
@@ -64,8 +64,6 @@ public class CropControl {
         wheatInStore += (acresToSell * landPrice);
         cropData.setWheatInStore(wheatInStore); // Insert new value into the cropData class.
 
-        //return acresOwned
-        return acresOwned; // Value storage or display it to the calling method
     }
     
 /**    
@@ -114,20 +112,17 @@ public class CropControl {
     * 0 and 100.
     */
     
-    public static int setOffering(int offering, CropData cropData) {
+    public static void setOffering(int offering, CropData cropData) throws CropException {
         // If offering is less than 0 or negative value, return -1
         if(offering < 0)
-            return -1;
+            throw new CropException("A negative value was input.Insert a number between 0 and 100");
         
         // If offering is greater than 100, return -1
         if(offering > 100)
-            return -1;
+            throw new CropException("This number is too high, insert a number between 0 and 100.");
         
         // Set offering into the cropData Class
         cropData.setOffering(offering);
-        
-        // Return offering
-        return offering;
         
     }
     

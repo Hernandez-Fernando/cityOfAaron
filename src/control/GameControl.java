@@ -12,7 +12,11 @@ import model.*;
 import cityofaaron.CityOfAaron;
 import java.util.ArrayList;
 import java.util.Scanner;
-
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.io.Serializable;
 /**
  *
  * @author annikarau
@@ -295,8 +299,42 @@ public class GameControl {
 
         theGame.setProvisions(provisions);
     }
-     
-     
+    
+    //the saveGame() method
+    // Purpose: saves a game to disk
+    // Parameters: the file path
+    // Returns: none
+    public static void saveGame(String filepath) {
+        Game theGame = null;
+        
+        try (FileOutputStream fops = new FileOutputStream(filepath)) {
+           ObjectOutputStream output = new ObjectOutputStream(fops);
+           output.writeObject(theGame);
+           
+           CityOfAaron.setGame(theGame);
+       } catch (Exception e) {
+           System.out.println("\nError saving the game file.");
+       }
+        
+    }
+    
+    //the getSavedGame method
+    //Purpose: load saved game from disk
+    // Parameters: the file path
+    //Returns: updates game reference on disk
+    public static void getSavedGame(String filepath) {
+       Game theGame = null;
+       
+       try (FileInputStream fips = new FileInputStream(filepath)) {
+           ObjectInputStream input = new ObjectInputStream(fips);
+           theGame = (Game)input.readObject();
+           CityOfAaron.setGame(theGame);
+       } catch (Exception e) {
+           System.out.println("\nError reading the game file.");
+       }
+    }
+    
+    
 }
                 
   

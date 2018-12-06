@@ -9,7 +9,7 @@ package View;
 import cityofaaron.CityOfAaron;
 import control.*;
 import model.*;
-
+import java.io.Serializable;
 import java.util.Scanner;
 /**
  *
@@ -115,7 +115,17 @@ public class MainMenuView extends MenuView {
     */
     // ===================================
     public void startSavedGame() {
-        System.out.println("Start saved game option selected."); 
+        // prompt user and get a file path
+        System.out.println("/nPlease enter the game's filepath.");
+        String filepath = keyboard.next();
+        
+        // call the getSavedGame() method in the GameControl class to load the game
+        GameControl.getSavedGame(filepath);
+        
+        // Display the game menu for the loaded game
+        GameMenuView gmv = new GameMenuView();
+        gmv.displayMenu();
+        //System.out.println("Start saved game option selected."); 
     } 
     
     /**

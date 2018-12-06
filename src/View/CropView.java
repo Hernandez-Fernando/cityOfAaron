@@ -241,12 +241,12 @@ public class CropView extends MenuView {
         do 
         {
             paramsNotOkay = false;
-            System.out.print("What percentage of your harvest do you want to pay in tithes and offerings? ")
+            System.out.print("What percentage of your harvest do you want to pay in tithes and offerings? ");
             offering = keyboard.nextInt();
     
             try {
                 //subract this amount from the wheat in storage. Display the amount of wheat you have left.
-                CropControl.feedPeople(offering, cropData);
+                CropControl.setOffering(offering, cropData);
             } 
             catch (CropException e) {
                 System.out.println("I am sorry master, I cannot do this");

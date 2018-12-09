@@ -257,7 +257,7 @@ public class GameControl {
      }
     
      //create arrayList to display animals in the storehouse
-     public static void createAnimalList(){
+    public static void createAnimalList(){
          
          ArrayList<ListItem> animals = new ArrayList<>();
          
@@ -272,19 +272,37 @@ public class GameControl {
          theGame.setAnimals(animals);
      }
      //display animal list
-     public void displayAnimalList() {
+    public void displayAnimalList() {
          ArrayList<ListItem> animalList = theGame.getAnimals();  
          
          System.out.println("\n-----------------------------------"
-                          + "\n         List of Animals           "
-                          + "\n-----------------------------------"
-                          + "\n    Quantity        Animal Name    "
-                          + "\n-----------------------------------");
+                            + "\n         List of Animals        "
+                            + "\n-----------------------------------");
+        System.out.printf("%s %20s", "Animals", "Quantity");
+        System.out.println("\n-----------------------------------");
          for (int i = 0; i < animalList.size(); i++) {
-             System.out.println("       " + animalList.get(i).getNumber() + 
-                                "              " + animalList.get(i).getName()); 
-         }    
+             System.out.format("%-20s %-10d\n",animalList.get(i).getName(), animalList.get(i).getNumber());
+             
+         }
+         
+         System.out.println("\n-----------------------------------");    
      }
+     
+    public void saveAnimalList(String filePath) {
+        try (PrintWriter out = new PrintWriter(filePath)) {
+                out.println("\n\n Animal List Report");
+                out.printf("%s %20s", "Animals", "Quantity");
+                out.println("\n-----------------------------------");
+                
+            // Print animal type and quantity    
+            for (ListItem animal : theGame.getAnimals()) {
+                out.printf("%-20s %-10d\n",animal.getName(), animal.getNumber());
+        }
+            }
+            catch(Exception e) {
+                System.out.println("There was an error saving the list\n");
+            }
+    }
      
     //create arrayList to display list of provisions in the storehouse.
     public static void createProvisionsList() {

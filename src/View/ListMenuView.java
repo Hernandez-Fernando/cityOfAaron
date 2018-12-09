@@ -83,12 +83,21 @@ public class ListMenuView extends MenuView {
     */
     // ===================================
     public void listAnimals() {
-        // Display a message
-        System.out.println("\nView list of Animals");
+        keyboard.nextLine();
+        System.out.println("Would you like to display or save the list");
+        System.out.println("Enter 1 to display the list or enter any key to save the list");
+        String saveOrDisplay = keyboard.next();
         
-        // Displays the animals.
-        GameControl al = new GameControl();
-        al.displayAnimalList();
+        GameControl theGameControl = new GameControl();
+        
+        if (saveOrDisplay.equals("1")) {
+            theGameControl.displayAnimalList();
+        } else {
+            System.out.println("Please enter the file path.");
+            keyboard.nextLine();
+            String filePath = keyboard.nextLine();
+            theGameControl.saveAnimalList(filePath);
+        }
      
     } 
     

@@ -126,8 +126,6 @@ public class ListMenuView extends MenuView {
             String path = keyboard.next();
             GameControl gc = new GameControl();
             gc.printWriter(path, toolList, listName);
-        } else {
-            System.out.println("Response was not received propertly");
         }
         
     } 

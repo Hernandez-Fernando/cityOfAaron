@@ -16,6 +16,7 @@ import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
+import java.io.PrintWriter;
 import java.io.Serializable;
 /**
  *
@@ -333,6 +334,31 @@ public class GameControl {
            System.out.println("\nError reading the game file.");
        }
     }
+    
+    public static void printWriter(String filePath, ArrayList<ListItem> list, String listName) {
+        
+        try (PrintWriter pwout = new PrintWriter(filePath)) {
+            // Add Header
+            pwout.println("\n\n   " + listName + " Report");
+            
+            // Add Table data
+            pwout.printf("%n%-20s%10s", listName, "Quantity");
+            pwout.printf("%n%-20s%10s", "------", "--------"); 
+            
+            for (ListItem item : list) {
+                pwout.printf("%n%-20s%7d", item.getName(), item.getNumber());
+            }
+            
+            // Display Succesful report created.
+            System.out.println("\nReport was saved to " + filePath + " successfully!");
+            pwout.close();
+        }
+        catch(Exception e) {
+        
+            // Output Error Message
+            System.out.println("\nThere was an error saving the the listlist to disk. " + e.getMessage());
+        }
+}
     
     
 }

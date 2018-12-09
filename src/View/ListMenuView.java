@@ -115,6 +115,21 @@ public class ListMenuView extends MenuView {
          }
          
          System.out.println("\n-----------------------------------");
+         
+              
+        System.out.println("Would you like to export this list to a file? Y / N");
+        String option = keyboard.next();
+        
+        if(option.equals("y") || option.equals("Y")) {
+            String listName = "Tool List";
+            System.out.println("Please enter the file path to export:");
+            String path = keyboard.next();
+            GameControl gc = new GameControl();
+            gc.printWriter(path, toolList, listName);
+        } else {
+            System.out.println("Response was not received propertly");
+        }
+        
     } 
     
     /**

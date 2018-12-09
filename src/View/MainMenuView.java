@@ -116,7 +116,7 @@ public class MainMenuView extends MenuView {
     // ===================================
     public void startSavedGame() {
         // prompt user and get a file path
-        System.out.println("/nPlease enter the game's filepath.");
+        System.out.println("Please enter the game's filepath.");
         String filepath = keyboard.next();
         
         // call the getSavedGame() method in the GameControl class to load the game
@@ -150,7 +150,7 @@ public class MainMenuView extends MenuView {
     */
     // ===================================
     public void displaySaveGameView() {
-        System.out.println("Start save game view option selected."); 
+        System.out.println("Save current game view option selected."); 
     }
 
    

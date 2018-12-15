@@ -78,7 +78,7 @@ public class CropView extends MenuView {
                 break;
             // if the option is 8, call displayCropReport( )
             case 8:
-                //displayCropReport();
+                cropReportView();
                 break;
             // if the option is 9, return to Game Menu
             case 9:
@@ -94,6 +94,8 @@ public class CropView extends MenuView {
      */
     public static void runCropsView()
     {
+        //Display the Crop Report
+        cropReportView();
         // call the buyLandView() method
         buyLandView();
         // call feedPeopleView() method
@@ -179,7 +181,7 @@ public class CropView extends MenuView {
         {
             paramsNotOkay = false;
             //ask user how many bushels of grain to give the people
-            System.out.println("\nHow many bushels of grain do you want to give to the people? ");
+            System.out.println("\n\nHow many bushels of grain do you want to give to the people? ");
             bushels = keyboard.nextInt();
     
             try {
@@ -210,7 +212,7 @@ public class CropView extends MenuView {
         
         do {
             paramsNotOkay = false;
-            System.out.println("How many acres of land do you want to plant? ");
+            System.out.println("\n\nHow many acres of land do you want to plant? ");
             acresToPlant = keyboard.nextInt();
             
             try {
@@ -241,7 +243,7 @@ public class CropView extends MenuView {
         do 
         {
             paramsNotOkay = false;
-            System.out.print("What percentage of your harvest do you want to pay in tithes and offerings? ");
+            System.out.println("\n\nWhat percentage of your harvest do you want to pay in tithes and offerings? ");
             offering = keyboard.nextInt();
     
             try {
@@ -258,6 +260,26 @@ public class CropView extends MenuView {
         System.out.format("You offering percent is now %d.", cropData.getOffering());
         ;
     
+    }
+    
+    public static void cropReportView() {
+        
+        
+        System.out.println("\n-----------------------------------"
+                            + "\n         Crop Report        "
+                            + "\n-----------------------------------");
+        System.out.format("Number of Years: %d", cropData.getYear());
+        System.out.format("\nPeople Starved: %d", cropData.getNumStarved());
+        System.out.format("\nNew People: %d", cropData.getNewPeople());
+        System.out.format("\nPopulation: %d", cropData.getPopulation());
+        System.out.format("\nAcres Owned: %d", cropData.getAcresOwned());
+        System.out.format("\nCrop Yield: %d", cropData.getCropYield());
+        System.out.format("\nBushels of Wheat Harvest: %d", cropData.getHarvest());
+        System.out.format("\nPaid Tithes and Offerings: %d", cropData.getOfferingBushels());
+        System.out.format("\nEaten by rats: %d", cropData.getEatenByRats());
+        System.out.format("\nWheat in Store: %d", cropData.getWheatInStore());
+        
+        System.out.println("\n-----------------------------------");
     }
 
 }

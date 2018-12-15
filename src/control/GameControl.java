@@ -278,8 +278,8 @@ public class GameControl {
          System.out.println("\n-----------------------------------"
                             + "\n         List of Animals        "
                             + "\n-----------------------------------");
-        System.out.printf("%s %20s", "Animals", "Quantity");
-        System.out.println("\n-----------------------------------");
+         System.out.printf("%s %20s", "Animals", "Quantity");
+         System.out.println("\n-----------------------------------");
          for (int i = 0; i < animalList.size(); i++) {
              System.out.format("%-20s %-10d\n",animalList.get(i).getName(), animalList.get(i).getNumber());
              

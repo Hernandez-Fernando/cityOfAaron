@@ -20,6 +20,17 @@ public class CropControl {
     private static final int LAND_RANGE = 10;
     private static final int POPULATION_ALLOWED_PER_ACRE = 10;
     private static final int BUSHELS_PER_ACRE = 2;
+    private static final int HARVEST_BASE_ONE = 1;
+    private static final int HARVEST_BASE_TWO = 2;
+    private static final int HARVEST_RANGE = 3;
+    private static final int EATEN_RATS_BASE = 1;
+    private static final int EATEN_RATS_RANGE = 100;
+    private static final int EATEN_WHEAT_BASE_ONE = 3;
+    private static final int EATEN_WHEAT_BASE_TWO = 6;
+    private static final int EATEN_WHEAT_RANGE_ONE = 4;
+    private static final int EATEN_WHEAT_RANGE_TWO = 2;
+    private static final int PEOPLE_BASE = 1;
+    private static final int PEOPLE_RANGE = 5;
     // random number generator
     private static Random random = new Random();
 
@@ -203,5 +214,182 @@ public class CropControl {
         cropData.setWheatInStore(wheatInStore);
             
     }
+    
+    /**
+    *The harvestCrops method
+    * Purpose: Calculate crop yield
+    *@param offering
+    *@param cropYield
+    *@param acresOwned
+    *@param cropData 
+    *@ return harvestAfterOffering
+    *Pre-conditions: the value of tithes and offerings must be >= than 0 
+    *the random value of crop yield must be a number between 2 and 4 when the paid 
+    *percentage of tithes and offerings is equal or greater than 8 and less or equal to 12 
+    *the random value of crop yield must be a number between 1 and 3 when the paid 
+    *percentage of tithes and offerings is less than 8
+    *the random value of crop yield must be a number between 2 and 5 when the paid 
+    *percentage of tithes and offerings is greater than 12
+    */
+    public static void harvestCrops(int offering, int cropYield, int acresOwned, CropData cropData) throws CropException {
+        //if offering < 0, return -1
+        offering = cropData.getOffering();
+        if (offering < 0)
+            throw new CropException("A negative value was input. Try again using a positive value:");
+        
+        if (offering <= 8 && offering >= 12) {
+            int yieldEightTwelve = HARVEST_BASE_ONE + random.nextInt(HARVEST_BASE_TWO);
+            cropData.setCropYield(yieldEightTwelve);
+            int harvestAfterOffering = cropYield * acresOwned;
+            cropData.setHarvest(harvestAfterOffering);
+        } 
+        if (offering < 8) {
+            int yieldBelowEight = HARVEST_BASE_ONE + random.nextInt(HARVEST_BASE_TWO);
+            cropData.setCropYield(yieldBelowEight);
+            int harvestAfterOffering = cropYield * acresOwned;
+            cropData.setHarvest(harvestAfterOffering);
+        } 
+        if (offering >= 12) {
+            int yieldAboveTwelve = HARVEST_BASE_TWO + random.nextInt(HARVEST_RANGE);;
+            cropData.setCropYield(yieldAboveTwelve);
+            int harvestAfterOffering = cropYield * acresOwned;
+            cropData.setHarvest(harvestAfterOffering);
+        }
+        
+        int harvestAfterOffering = cropData.getHarvest();
+        cropData.setHarvestAfterOffering(harvestAfterOffering);
+        System.out.println("The number of bushels of wheat harvested are " + harvestAfterOffering);
+    }
+    
+    /**
+    *The calcEatenByRats method
+    * Purpose: calculate the amount of bushels of wheat eaten by rates 
+    *@param eatenByRats
+    *@param wheatInStore
+    *@param offeringBushels
+    *@param cropData 
+    *@ return wheatInStore
+    *Pre-conditions: the generated random number must be less than 30 so that some of 
+    *the wheat in store be eaten by rats. 
+    *the amount of wheatInStore must be > than 0
+    *the paid offering bushels must be equal or greater than 8, and equal or less than 12 so that 
+    *amount of bushels of wheat eaten by rats be a random number between 3% and 7% of the *wheat in store 
+    *the paid offering bushels must be less than 8 so that amount of bushels of wheat eaten by 
+    *rats be a random number between 6% and 10% of the wheat in store
+    *the paid offering bushels must be greater than 12 so that amount of bushels of wheat eaten 
+    *by rats be a random number between 3% and 5% of the wheat in store.
+    */
+    public static void calcEatenByRats(int eatenByRats, int wheatInStore, int offeringBushels, CropData cropData) throws CropException {
+        //if wheatInStore < 0, return -1 
+        wheatInStore = cropData.getWheatInStore();
+        if (wheatInStore < 0)
+            throw new CropException("It is not possible calculate the amount of wheat eaten "
+                                  + "by rats because you have 0 bushels of wheat");
+        //generate a random number between 1 and 100
+        int eatenRatsPercentage;
+        int randomNumberRats = EATEN_RATS_BASE + random.nextInt(EATEN_RATS_RANGE);
+        if (randomNumberRats < 30) {
+            int tithesOfferings = cropData.getOfferingBushels();
+            if (tithesOfferings < 8) {
+                int randomWheat = EATEN_WHEAT_BASE_TWO + random.nextInt(EATEN_WHEAT_RANGE_ONE);
+                eatenRatsPercentage = randomWheat / 100;
+            }
+            else if (tithesOfferings > 12) {
+                int randomWheat = EATEN_WHEAT_BASE_ONE + random.nextInt(EATEN_WHEAT_RANGE_TWO);
+                eatenRatsPercentage = randomWheat / 100;
+            }
+            else if (tithesOfferings >= 8 && tithesOfferings <= 12) { 
+                int randomWheat = EATEN_WHEAT_BASE_ONE + random.nextInt(EATEN_WHEAT_RANGE_ONE);
+                eatenRatsPercentage = randomWheat / 100;
+            }
+            else {
+                eatenRatsPercentage = 0;
+            }
+	//eatenByRats = wheatInStore * eatenRatsPercentage
+        eatenByRats = wheatInStore * eatenRatsPercentage;
+        cropData.setEatenByRats(eatenByRats);
+	//wheatInStore = wheatInStore – eatenByRats
+        wheatInStore = wheatInStore - eatenByRats;
+        cropData.setWheatInStore(wheatInStore);
+        }
+    }
+        
+    /**
+    *The payOffering method
+    * Purpose: calculate the value of offerings to pay. 
+    *@param offering
+    *@param harvest
+    *@param payOffering
+    *@param cropData 
+    *Pre-conditions: It gets the values of offering and harvest 
+    *to multiply among them and then divide it by 100. 
+    */   
+    public static void payOffering(int offering, int harvest, int payOffering, CropData cropData) throws CropException{
+        
+        offering = cropData.getOffering(); 
+        harvest = cropData.getHarvest(); 
+        payOffering = (offering * harvest) / 100; 
+        
+        cropData.setOfferingBushels(payOffering); 
+        harvest -= payOffering; 
+        cropData.setHarvestAfterOffering(harvest);
+        int wheatInStore = cropData.getWheatInStore() + harvest;
+        cropData.setWheatInStore(wheatInStore);
+        
+        System.out.println("Thank you for paying the offerings. "
+                         + "The paid total amount was: " + payOffering);
+        //return wheatInStore;
+    }
+    
+    /**
+    *The growPopulation method
+    * Purpose: determine how much grew the population. 
+    *@param population
+    *@param newPeople
+    *@param cropData 
+    *Pre-conditions: Generate a random number between 1 and 5 %.
+    * Calculate the number of people who moved into the city.
+    */
+    public static void growPopulation(int population, int newPeople, CropData cropData) throws CropException {
+        int peopleRandom = PEOPLE_BASE + random.nextInt(PEOPLE_RANGE);
+        int peopleRandomPercentage = peopleRandom / 100;
+        int currentPopulation = cropData.getPopulation();
+        newPeople = currentPopulation * peopleRandomPercentage;
+        cropData.setNewPeople(newPeople);
+        population += newPeople;
+        cropData.setPopulation(population);
+        System.out.println("The city is growing. Current population is " + population);
+    }
+    
+    /**
+    *The calcStarved method
+    * Purpose: calculate how many people were adequately fed during the year. 
+    *@param numberWhoDied
+    *@param numStarved
+    *@param peopleFed
+    *@param cropData 
+    *Pre-conditions: It takes 20 bushels of wheat to feed each person.
+    *Calculate people who died of starvation by substract people adequately
+    *fed, from current population.
+    */
+    public static void calcStarved(int numberWhoDied, int numStarved, int peopleFed, CropData cropData) throws CropException {
+        
+        int currentPeople = cropData.getPopulation();
+        int wheatPeople = cropData.getWheatForPeople();
+        peopleFed = wheatPeople / 20; 
+        //cropData.setPeopleFed(peopleFed);
+        
+        if (peopleFed < currentPeople) {
+            numStarved = currentPeople - peopleFed;
+            numberWhoDied = cropData.getNumStarved();
+            cropData.setNumberWhoDied(numberWhoDied);   
+        }
+        int peopleAfterStarve = currentPeople - numberWhoDied;
+        cropData.setPopulation(peopleAfterStarve);
+    }
 }
+    
+    
+    
+
 

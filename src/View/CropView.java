@@ -28,14 +28,14 @@ public class CropView extends MenuView {
             "**********************************\n" +
             "*        MANAGE CROPS MENU       *\n" + 
             "**********************************\n" +
-            " 1 - Buy Land\n" +
-            " 2 - Sell Land\n" +
-            " 3 - Pay Tithes and Offerings\n" +
+            " 1 - Display Crop Report\n" +
+            " 2 - Buy Land\n" +
+            " 3 - Sell Land\n" +
             " 4 - Feed People\n" +
             " 5 - Plant Crops\n" +
-            " 6 - Show Starved\n" +
-            " 7 - Runs Crops\n" +
-            " 8 - Display Crop Report\n" +
+            " 6 - Harvest Crops\n" +
+            " 7 - Pay Offerings\n" +
+            " 8 - Runs Crops\n" +
             " 9 - Return to Game Menu\n",
             9);
     }
@@ -48,19 +48,19 @@ public class CropView extends MenuView {
     // ===================================
     @Override public void doAction(int option) {
         switch(option) {
-            // if the option is 1, call buyLandView( )
+            // if the option is 1, call cropReportView()
             case 1:
+                cropReportView();
+                break;
+            // if the option is 2, call buyLandView(); 
+            case 2:
                 buyLandView();
                 break;
-            // if the option is 2, call sellLandView( ) 
-            case 2:
+            // if the option is 3, call sellLandView();
+            case 3:
                 sellLandView();
                 break;
-            // if the option is 3, call payOfferingsView( )
-            case 3:
-                payOfferingsView();
-                break;
-            // if the option is 4, call feedPeopleView( )
+            // if the option is 4, call feedPeopleView()
             case 4:
                 feedPeopleView();
                 break;
@@ -68,19 +68,20 @@ public class CropView extends MenuView {
             case 5:
                 plantCropsView();
                 break;
-            // if the option is 6, call showStarvedView( )
+            // if the option is 6, call harvestCropsView()
             case 6:
                 //showStarvedView();
+                harvestCropsView();
                 break;
-            // if the option is 7, call runCropsView( )
+            // if the option is 7, call payOfferingsView()
             case 7:
+                payOfferingsView();
+                break;
+            //if the option is 8, call runCropsView()
+            case 8:
                 runCropsView();
                 break;
-            // if the option is 8, call displayCropReport( )
-            case 8:
-                cropReportView();
-                break;
-            // if the option is 9, return to Game Menu
+            //if the option is 9, return to Game Menu 
             case 9:
                 return;
         } 
@@ -98,13 +99,26 @@ public class CropView extends MenuView {
         cropReportView();
         // call the buyLandView() method
         buyLandView();
+        // call the sellLandView method
+        sellLandView();
         // call feedPeopleView() method
         feedPeopleView();
         //call plantCropsView() method
         plantCropsView();
-        //call displayCropsReportView() method
+        //call setOfferingView()
+        setOfferingView();
+        //call harvestCropsView()
+        harvestCropsView();
+        //call payOfferingView() method
         payOfferingsView();
-}
+        //call calcEatenByRatsView()
+        calcEatenByRatsView();
+        //call growPopulationView()
+        growPopulationView();
+        //call calcStarved()
+        calcStarvedView();
+    }
+
   
     public static void buyLandView()
     {
@@ -280,6 +294,94 @@ public class CropView extends MenuView {
         System.out.format("\nWheat in Store: %d", cropData.getWheatInStore());
         
         System.out.println("\n-----------------------------------");
+    }
+    
+    public static void setOfferingView() {
+        boolean paramsNotOkay;
+        do {
+            paramsNotOkay = false;
+            System.out.println("what is the percentage you wish to give in tithes and offerings");
+            int offering = keyboard.nextInt();
+            try {
+                CropControl.setOffering(offering, cropData);
+            }
+            catch (CropException e) {
+                System.out.println("I am sorry master, I cannot do this");
+                System.out.println(e.getMessage());
+                paramsNotOkay = true;
+            }
+        }while (paramsNotOkay);
+        System.out.format("You offering percent is now %d.", cropData.getOffering());
+    }
+    
+    public static void harvestCropsView() {
+        int cropYield = 0;
+        boolean paramsNotOkay;
+        do {
+            paramsNotOkay = false;
+            System.out.println("You have harvested " + cropYield + " bushels per acre");
+            try {
+                CropControl.setOffering(cropYield, cropData);
+            }
+            catch (CropException e) {
+                System.out.println("I am sorry master, I cannot show this");
+                System.out.println(e.getMessage());
+                paramsNotOkay = true;
+            }
+        }while (paramsNotOkay);
+        System.out.format("You now have %d bushels of wheat harvested. ", cropData.getCropYield());
+    }
+    
+    public static void calcEatenByRatsView() {
+        int eatenByRats = 0;
+        boolean paramsNotOkay;
+        do {
+            paramsNotOkay = false;
+            System.out.println("Rats are eating the bushels of wheat. This is the amount: " + eatenByRats);
+            try {
+                CropControl.setOffering(eatenByRats, cropData);
+            }
+            catch (CropException e) {
+                System.out.println("I am sorry master, I cannot show this");
+                System.out.println(e.getMessage());
+                paramsNotOkay = true;
+            }
+        }while (paramsNotOkay);
+        
+    }
+    
+    public static void calcStarvedView() {
+        int numStarved = 0;
+        boolean paramsNotOkay;
+        do {
+            paramsNotOkay = false;
+            System.out.println("People is starving. The number for this years is: " + numStarved);
+            try {
+                CropControl.setOffering(numStarved, cropData);
+            }
+            catch (CropException e) {
+                System.out.println("I am sorry master, I cannot show this");
+                System.out.println(e.getMessage());
+                paramsNotOkay = true;
+            }
+        }while (paramsNotOkay);
+    }
+    
+    public static void growPopulationView() {
+        int numStarved = 0;
+        boolean paramsNotOkay;
+        do {
+            paramsNotOkay = false;
+            System.out.println("People is starving. The number for this years is: " + numStarved);
+            try {
+                CropControl.setOffering(numStarved, cropData);
+            }
+            catch (CropException e) {
+                System.out.println("I am sorry master, I cannot show this");
+                System.out.println(e.getMessage());
+                paramsNotOkay = true;
+            }
+        }while (paramsNotOkay);
     }
 
 }

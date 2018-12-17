@@ -18,6 +18,7 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.io.PrintWriter;
 import java.io.Serializable;
+import java.util.Random;
 /**
  *
  * @author annikarau
@@ -376,9 +377,90 @@ public class GameControl {
             // Output Error Message
             System.out.println("\nThere was an error saving the the listlist to disk. " + e.getMessage());
         }
-}
+    }
     
-    
+    /**
+     *
+     */
+    public void cataclysm() {
+            Game _game = CityOfAaron.getTheGame();
+            CropData cropData = _game.getCropData();
+            
+            if (cropData.getOffering() == 0) {
+                majorCataclysm(cropData);
+                System.out.println("You should have made an offering");
+            }
+            
+            if (cropData.getOffering() < cropData.getHarvest() / 10) {
+                minorCataclysm(cropData);
+                System.out.println("You should have offered more");
+            }
+            
+        }
+        
+        private void minorCataclysm(CropData crops) {
+            Random random = new Random();
+            int rand = random.nextInt(1);
+            
+            // Plague of Locusts that destroys harvest
+            if (rand == 0) {
+                crops.setHarvest(0);
+                crops.setHarvestAfterOffering(0);
+                System.out.println("A plague of Locust has eaten your harvest");
+            }
+            // Minor Plague
+            else if (rand == 1) {
+                Random died = new Random();
+                int dead = died.nextInt(25);
+                crops.setNumberWhoDied(dead);
+                int newPop = crops.getPopulation() - dead;
+                crops.setPopulation(newPop);
+            }
+            
+            else {
+                System.out.println("ERROR - Minor Cataclysm");
+            }
+        }
+        
+        private void majorCataclysm(CropData cropData) {
+            Random random = new Random();
+            int rand = random.nextInt(1);
+            
+            // Raiders steal random amount of land and kill random amount of people
+            if (rand == 0) {
+                System.out.println("Raiders have taken some of your land & killed some of your people");
+                Random aleatory = new Random();
+                // take land
+                int landLost = aleatory.nextInt(cropData.getAcresOwned());
+                cropData.setAcresOwned(landLost);
+                // kill people
+                int killed = aleatory.nextInt(cropData.getPopulation());
+                cropData.setPopulation(cropData.getPopulation() - killed);
+                
+            }
+            // Major plague
+            else if (rand == 1) {
+                System.out.println("A major plague of locust has swarmed your land, "
+                        + "eating your harvest, some of your stores, and some of your people.");
+                Random ran = new Random();
+                
+                // eat harvest
+                cropData.setHarvest(0);
+                cropData.setHarvestAfterOffering(0);
+                // eat stores
+                int storesLost = ran.nextInt(cropData.getWheatInStore());
+                cropData.setWheatInStore(storesLost);
+                // eat people
+                int peopleEaten = ran.nextInt(cropData.getPopulation());
+                cropData.setPopulation(cropData.getPopulation() - peopleEaten);
+            }
+            
+            else {
+                System.out.println("ERROR - Major Cataclysm");
+            }
+        }    
 }
+  
+
                 
   
